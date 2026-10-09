@@ -530,3 +530,75 @@ body.no-nav .nav { transform: translateY(150%); opacity: 0; pointer-events: none
 @media (min-width: 481px) {
   #app { border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
 }
+
+/* ============================================================
+   Фотографии: единая тёплая цветокоррекция под палитру приложения
+   ============================================================ */
+.ph {
+  display: block; width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(.82) sepia(.14) contrast(1.04) brightness(.92);
+  background: var(--card-2);
+}
+.ob-photo { position: absolute; inset: 0; animation: kenburns 18s ease-out both; }
+.ob-art { overflow: hidden; }
+.ob-fade { background: linear-gradient(180deg, rgba(14, 12, 10, .55) 0%, rgba(14, 12, 10, .05) 28%, rgba(14, 12, 10, .25) 62%, var(--bg) 100%); }
+.detail-hero > .ph, .about-hero > .ph, .quiz-hero > .ph { position: absolute; inset: 0; }
+.about-hero { overflow: hidden; }
+
+/* карточка лид-магнита с фото */
+.card-lead { background: #3b2e23; }
+.card-lead > *:not(.cl-bg) { position: relative; z-index: 1; }
+.cl-bg { position: absolute; inset: 0; z-index: 0; }
+.card-lead::before {
+  content: ''; position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(180deg, rgba(40, 30, 21, .25) 0%, rgba(40, 30, 21, .55) 45%, rgba(28, 21, 14, .95) 100%);
+}
+.card-lead::after { z-index: 0; }
+.card-lead h2 { text-shadow: 0 2px 14px rgba(0, 0, 0, .45); }
+.faces img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; border: 2px solid #3b2e23; margin-left: -7px; filter: sepia(.15); }
+.faces img:first-child { margin-left: 0; }
+
+/* быстрые практики с фото */
+.tool.photo { background: #1a1714; }
+.tool.photo > *:not(.tool-bg) { position: relative; z-index: 1; }
+.tool-bg { position: absolute; inset: 0; z-index: 0; }
+.tool.photo::before { content: ''; position: absolute; inset: 0; z-index: 0; background: linear-gradient(180deg, rgba(14, 12, 10, .82) 0%, rgba(14, 12, 10, .35) 60%, rgba(14, 12, 10, .6) 100%); }
+.tool.photo p { color: #d9cfc1; }
+
+/* курсы */
+.cm-art { position: relative; height: 150px; }
+.course-mini { flex-basis: 150px; }
+.cc-art { height: 190px; overflow: hidden; }
+.cc-art::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 12, 10, 0) 55%, rgba(26, 23, 20, .9) 100%); }
+.cc-art .tag { z-index: 1; }
+.detail-hero { height: calc(420px + var(--safe-top)); overflow: hidden; }
+.detail-hero .hero-fade { background: linear-gradient(180deg, rgba(14, 12, 10, .45) 0%, rgba(14, 12, 10, 0) 25%, rgba(14, 12, 10, .35) 60%, var(--bg) 100%); }
+img.mini-ava { object-fit: cover; padding: 0; }
+.mini-ava.md { width: 40px; height: 40px; }
+.mini-ava.lg { width: 64px; height: 64px; }
+
+/* магазин */
+.shop-card { padding: 0; overflow: hidden; min-height: 0; gap: 4px; }
+.shop-card > :not(.sc-media) { margin: 0 12px; }
+.shop-card > :last-child { margin-bottom: 12px; }
+.sc-media { position: relative; height: 104px; margin-bottom: 8px; background: radial-gradient(circle at 30% 20%, #5e4a38, #221e1a 75%); }
+.sc-media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 12, 10, 0) 50%, rgba(26, 23, 20, .85) 100%); }
+.sc-media .sc-ico { position: absolute; left: 10px; bottom: -6px; z-index: 1; width: 34px; height: 34px; border-radius: 11px; margin: 0; background: rgba(28, 21, 14, .8); backdrop-filter: blur(8px); border: 1px solid var(--line-2); }
+.sc-media .sc-ico .ic { width: 17px; height: 17px; }
+.sc-media:not(:has(.ph)) .sc-ico { left: 50%; top: 50%; bottom: auto; transform: translate(-50%, -60%); width: 54px; height: 54px; border-radius: 16px; }
+.sheet-photo { height: 180px; border-radius: var(--r-md); overflow: hidden; }
+
+/* дыхание: фон-свеча */
+.view[data-screen="breathing"] { isolation: isolate; }
+.screen-bg { position: fixed; inset: 0; z-index: -1; max-width: 480px; margin: 0 auto; pointer-events: none; }
+.screen-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 12, 10, .7), rgba(14, 12, 10, .45) 45%, rgba(14, 12, 10, .92)); }
+.view[data-screen="breathing"] .breath-circle { backdrop-filter: blur(6px); }
+
+@keyframes kenburns { from { transform: scale(1.12); } to { transform: scale(1); } }
+
+/* правки читаемости текста поверх фото */
+.card-lead::before { background: linear-gradient(180deg, rgba(28, 21, 14, .72) 0%, rgba(28, 21, 14, .5) 40%, rgba(24, 18, 12, .96) 100%); }
+.tool-bg { left: 38%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 45%); mask-image: linear-gradient(90deg, transparent, #000 45%); }
+.tool.photo::before { background: linear-gradient(180deg, rgba(14, 12, 10, .1) 40%, rgba(14, 12, 10, .55) 100%); }
+.screen-bg .ph { filter: blur(4px) brightness(.55) saturate(.8) sepia(.2); transform: scale(1.15) translateY(22%); }
+.screen-bg::after { background: radial-gradient(circle at 50% 40%, rgba(14, 12, 10, .55), rgba(14, 12, 10, .2) 60%), linear-gradient(180deg, rgba(14, 12, 10, .85), rgba(14, 12, 10, .3) 50%, rgba(14, 12, 10, .9)); }

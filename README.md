@@ -107,3 +107,34 @@ js/telegram.js        обёртка над Telegram WebApp API
 js/art.js             SVG-иллюстрации
 js/icons.js           иконки
 ```
+
+## Фотографии
+
+Все фото в `img/` взяты с [Unsplash](https://unsplash.com) по [Unsplash License](https://unsplash.com/license): бесплатно, в том числе для коммерческих проектов, указывать автора не обязательно (но мы указываем). Фото обрезаны под экраны и сжаты (все 22 файла весят около 1,3 МБ), единая тёплая цветокоррекция сделана в CSS (класс `.ph`).
+
+Портреты «авторов курсов» — стоковые фото моделей. Для реальной школы их нужно заменить на фото настоящих психологов.
+
+| Файл | Автор |
+|---|---|
+| room | Yuri Efremov |
+| gift | Prophsee Journals |
+| quiz | Christopher Stites |
+| about, shop-lesson | Margo Evardson |
+| course-calm | Daiga Ellaby |
+| course-self | Ben Elliott |
+| course-eq | Dalelan Anderson |
+| course-love | Scott Broome |
+| course-pro, shop-session | Vitaly Gariev |
+| breath | Siddharth Kushwaha |
+| guide | Jessica Mangano |
+| shop-harbor | Sixteen Miles Out |
+| shop-questions | Cathryn Lavery |
+| shop-diary | Kajetan Sumila |
+| shop-club | LinkedIn Sales Solutions |
+| shop-d10 | Yanhao Fang |
+| shop-d25 | Caroline Badran |
+| author-anna | Mehrpouya H |
+| author-daria | B S |
+| author-mikhail | Juliane Monari |
+
+Чтобы заменить фото, положите файл с тем же именем в `img/` (JPG, ширина 600–900 px).

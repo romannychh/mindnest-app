@@ -9,18 +9,21 @@ export const CATEGORIES = [
 
 export const AUTHORS = {
   anna: {
+    photo: 'author-anna',
     name: 'Анна Вершинина', initials: 'АВ',
     role: 'Клинический психолог, КПТ-терапевт',
     exp: '12 лет практики · основатель MindNest',
     bio: 'Работает с тревожными расстройствами и выгоранием. Член Ассоциации когнитивно-поведенческой психотерапии. Провела более 4 000 консультаций.',
   },
   mikhail: {
+    photo: 'author-mikhail',
     name: 'Михаил Орлов', initials: 'МО',
     role: 'Семейный психолог, системный терапевт',
     exp: '15 лет практики',
     bio: 'Помогает парам выходить из затяжных конфликтов и договариваться. Ведёт супервизионные группы для начинающих психологов.',
   },
   daria: {
+    photo: 'author-daria',
     name: 'Дарья Ким', initials: 'ДК',
     role: 'Гештальт-терапевт',
     exp: '9 лет практики',
@@ -30,7 +33,7 @@ export const AUTHORS = {
 
 export const COURSES = [
   {
-    id: 'calm', cat: 'anxiety', author: 'anna', tag: 'Хит',
+    id: 'calm', img: 'course-calm', cat: 'anxiety', author: 'anna', tag: 'Хит',
     title: 'Тревога под контролем', subtitle: '4 недели · 16 уроков',
     price: 12900, oldPrice: 16900, rating: 4.9, students: 1840, weeks: 4,
     desc: 'Разберёшься, откуда берётся тревога, научишься замечать автоматические мысли и снижать напряжение за минуты, а не часы. Курс построен на методах КПТ с доказанной эффективностью.',
@@ -39,7 +42,7 @@ export const COURSES = [
     art: { tone: '#3d2e22', lampX: 230, chair: true, plant: true },
   },
   {
-    id: 'self', cat: 'self', author: 'anna', tag: 'Популярное',
+    id: 'self', img: 'course-self', cat: 'self', author: 'anna', tag: 'Популярное',
     title: 'Опора внутри', subtitle: 'Самооценка · 5 недель · 18 уроков',
     price: 14900, oldPrice: 18900, rating: 4.8, students: 2960, weeks: 5,
     desc: 'Курс для тех, кто устал от внутреннего критика и вечного сравнения с другими. Научишься поддерживать себя так же бережно, как поддерживаешь близких.',
@@ -48,7 +51,7 @@ export const COURSES = [
     art: { tone: '#3a3024', lampX: 150, window: true, chair: true },
   },
   {
-    id: 'eq', cat: 'self', author: 'daria', tag: 'Новый поток',
+    id: 'eq', img: 'course-eq', cat: 'self', author: 'daria', tag: 'Новый поток',
     title: 'Эмоциональный интеллект', subtitle: '6 недель · 22 урока',
     price: 18900, oldPrice: 23900, rating: 4.8, students: 2210, weeks: 6,
     desc: 'Научишься понимать, что чувствуешь, и выражать это без взрывов и замалчивания. Меньше конфликтов, больше контакта с собой и людьми.',
@@ -57,7 +60,7 @@ export const COURSES = [
     art: { tone: '#2f2a22', lampX: 260, plant: true, shelf: true, table: true },
   },
   {
-    id: 'love', cat: 'relations', author: 'mikhail',
+    id: 'love', img: 'course-love', cat: 'relations', author: 'mikhail',
     title: 'Психология отношений', subtitle: '6 недель · 20 уроков',
     price: 19900, oldPrice: 24900, rating: 4.9, students: 1530, weeks: 6,
     desc: 'Про привязанность, границы и конфликты, после которых становится ближе, а не холоднее. Подходит и для пар, и для тех, кто хочет понять свои сценарии.',
@@ -66,7 +69,7 @@ export const COURSES = [
     art: { tone: '#3b2a24', lampX: 200, chair: true, table: true },
   },
   {
-    id: 'pro', cat: 'career', author: 'anna', tag: 'Диплом',
+    id: 'pro', img: 'course-pro', cat: 'career', author: 'anna', tag: 'Диплом',
     title: 'Психолог-консультант', subtitle: 'Профпереподготовка · 9 месяцев',
     price: 89000, oldPrice: 119000, rating: 4.9, students: 640, weeks: 36,
     desc: 'Полноценная профессия с дипломом установленного образца: теория, супервизии и практика на реальных клиентах. Выпускники ведут частную практику и работают в центрах.',
@@ -92,7 +95,7 @@ export const SHOP_CATS = [
 
 export const SHOP = [
   {
-    id: 'harbor', cat: 'practice', type: 'content', icon: 'headphones', price: 3000,
+    id: 'harbor', img: 'shop-harbor', cat: 'practice', type: 'content', icon: 'headphones', price: 3000,
     title: 'Практика «Тихая гавань»', short: 'Визуализация безопасного места',
     desc: 'Короткая практика, которая помогает успокоиться перед сном или важной встречей. Займёт 7 минут.',
     content: {
@@ -110,7 +113,7 @@ export const SHOP = [
     },
   },
   {
-    id: 'questions', cat: 'practice', type: 'content', icon: 'file', price: 5000,
+    id: 'questions', img: 'shop-questions', cat: 'practice', type: 'content', icon: 'file', price: 5000,
     title: '30 вопросов к себе', short: 'Чек-лист самопознания',
     desc: 'Вопросы, которые психологи задают на первых сессиях. Отвечай письменно по 3 вопроса в день.',
     content: {
@@ -125,7 +128,7 @@ export const SHOP = [
     },
   },
   {
-    id: 'diary', cat: 'practice', type: 'content', icon: 'book', price: 7000,
+    id: 'diary', img: 'shop-diary', cat: 'practice', type: 'content', icon: 'book', price: 7000,
     title: 'Дневник эмоций', short: 'КПТ-шаблон на 7 дней',
     desc: 'Тот самый дневник, с которого начинается работа в когнитивно-поведенческой терапии.',
     content: {
@@ -142,11 +145,11 @@ export const SHOP = [
       outro: 'Через неделю перечитай записи: обычно видны 2–3 повторяющиеся мысли. С ними и стоит работать дальше.',
     },
   },
-  { id: 'lesson', cat: 'discount', type: 'promo', icon: 'play', price: 9000, title: 'Открытый урок', short: 'Любой урок любого курса', desc: 'Выбери урок из любого курса школы, и менеджер откроет к нему доступ на 7 дней.' },
-  { id: 'd10', cat: 'discount', type: 'promo', icon: 'percent', price: 15000, title: 'Скидка 10% на курс', short: 'Действует 30 дней', desc: 'Промокод на скидку 10% на любой курс школы. Назови его менеджеру при записи.' },
-  { id: 'd25', cat: 'discount', type: 'promo', icon: 'percent', price: 40000, title: 'Скидка 25% на курс', short: 'Действует 30 дней', desc: 'Промокод на скидку 25% на любой курс, включая профпереподготовку.' },
-  { id: 'club', cat: 'consult', type: 'service', icon: 'users', price: 25000, title: 'Месяц в клубе', short: 'Группа + 4 эфира', desc: 'Месяц в закрытом клубе поддержки: еженедельные эфиры с психологами и тёплый чат участников.' },
-  { id: 'session', cat: 'consult', type: 'service', icon: 'chat', price: 60000, title: 'Мини-сессия 20 мин', short: 'Онлайн с психологом', desc: 'Индивидуальная онлайн-встреча с психологом школы: разберёте один запрос и наметите шаги.' },
+  { id: 'lesson', img: 'shop-lesson', cat: 'discount', type: 'promo', icon: 'play', price: 9000, title: 'Открытый урок', short: 'Любой урок любого курса', desc: 'Выбери урок из любого курса школы, и менеджер откроет к нему доступ на 7 дней.' },
+  { id: 'd10', img: 'shop-d10', cat: 'discount', type: 'promo', icon: 'percent', price: 15000, title: 'Скидка 10% на курс', short: 'Действует 30 дней', desc: 'Промокод на скидку 10% на любой курс школы. Назови его менеджеру при записи.' },
+  { id: 'd25', img: 'shop-d25', cat: 'discount', type: 'promo', icon: 'percent', price: 40000, title: 'Скидка 25% на курс', short: 'Действует 30 дней', desc: 'Промокод на скидку 25% на любой курс, включая профпереподготовку.' },
+  { id: 'club', img: 'shop-club', cat: 'consult', type: 'service', icon: 'users', price: 25000, title: 'Месяц в клубе', short: 'Группа + 4 эфира', desc: 'Месяц в закрытом клубе поддержки: еженедельные эфиры с психологами и тёплый чат участников.' },
+  { id: 'session', img: 'shop-session', cat: 'consult', type: 'service', icon: 'chat', price: 60000, title: 'Мини-сессия 20 мин', short: 'Онлайн с психологом', desc: 'Индивидуальная онлайн-встреча с психологом школы: разберёте один запрос и наметите шаги.' },
   { id: 'stickers', cat: 'merch', type: 'merch', icon: 'star', price: 2000, title: 'Стикерпак', short: 'Эмоции для Telegram', desc: '24 стикера с эмоциями, чтобы называть свои чувства даже в переписке.' },
   { id: 'notebook', cat: 'merch', type: 'merch', icon: 'book', price: 35000, title: 'Печатный дневник', short: 'Доставка по России', desc: 'Красивый дневник эмоций на 90 дней. Менеджер уточнит адрес доставки.' },
 ];
@@ -250,7 +253,7 @@ export const MOODS = [
 ];
 
 export const ONBOARDING = [
-  { title: 'Пространство, где тебя понимают', text: 'Курсы, практики и поддержка психологов в одном приложении.', art: { tone: '#3d2e22', lampX: 200, chair: true, plant: true } },
+  { img: 'room', title: 'Пространство, где тебя понимают', text: 'Курсы, практики и поддержка психологов в одном приложении.', art: { tone: '#3d2e22', lampX: 200, chair: true, plant: true } },
   { title: 'Тапай и копи искры', text: 'Каждое касание ядра приносит искры. Обменивай их на практики, скидки и консультации.', orb: true },
-  { title: 'Подарок с первых минут', text: 'Пройди тест на тревожность и забери гид «5 техник, которые снимают тревогу за 5 минут».', art: { tone: '#3a3024', lampX: 200, window: true, table: true, plant: true } },
+  { img: 'gift', title: 'Подарок с первых минут', text: 'Пройди тест на тревожность и забери гид «5 техник, которые снимают тревогу за 5 минут».', art: { tone: '#3a3024', lampX: 200, window: true, table: true, plant: true } },
 ];

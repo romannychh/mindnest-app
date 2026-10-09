@@ -89,7 +89,11 @@ function avatar(cls = '') {
     ? `<img class="ava ${cls}" src="${esc(u.photo)}" alt="">`
     : `<div class="ava ${cls}">${esc((u.name[0] || '?').toUpperCase())}</div>`;
 }
-const faces = () => ['#c9a37a', '#8f7a63', '#b88c6a'].map((c, i) => `<i style="background:${c}">${'МОК'[i]}</i>`).join('');
+// Фото из папки img/ (Unsplash, бесплатная лицензия). Тёплая цветокоррекция задаётся в CSS (.ph)
+const ph = (name, cls = '', eager = false) => `<img class="ph ${cls}" src="img/${name}.jpg" alt="" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async">`;
+const media = (item) => (item.img ? ph(item.img) : scene(item.art));
+const authorAva = (a, cls = '') => (a.photo ? `<img class="mini-ava ${cls}" src="img/${a.photo}.jpg" alt="${a.name}" loading="lazy">` : `<i class="mini-ava ${cls}">${a.initials}</i>`);
+const faces = () => ['author-anna', 'author-mikhail', 'author-daria'].map((n) => `<img src="img/${n}.jpg" alt="">`).join('');
 
 // ============================================================ gift promo (дожим после лид-магнита)
 const giftLeftMs = () => (S.lead ? S.lead.at + CONFIG.giftPromo.hours * 3600e3 - Date.now() : 0);
@@ -143,7 +147,7 @@ const logo = () => `<div class="logo"><span class="logo-mark">Ψ</span><div><b>$
 
 function courseMini(c) {
   return `<button class="course-mini" data-action="go" data-to="course" data-id="${c.id}">
-    <div class="cm-art">${scene(c.art)}</div>
+    <div class="cm-art">${media(c)}</div>
     <div class="cm-title">${c.title}</div>
     <div class="cm-meta">${rub(c.price)}</div>
   </button>`;
@@ -152,12 +156,12 @@ function courseMini(c) {
 function courseCard(c) {
   const a = AUTHORS[c.author];
   return `<button class="course-card" data-action="go" data-to="course" data-id="${c.id}">
-    <div class="cc-art">${scene(c.art)}${c.tag ? `<span class="tag">${c.tag}</span>` : ''}</div>
+    <div class="cc-art">${media(c)}${c.tag ? `<span class="tag">${c.tag}</span>` : ''}</div>
     <div class="cc-body">
       <div class="cc-title">${c.title}</div>
       <div class="muted sm">${c.subtitle}</div>
       <div class="cc-foot">
-        <span class="cc-author"><i class="mini-ava">${a.initials}</i>${a.name}</span>
+        <span class="cc-author">${authorAva(a)}${a.name}</span>
         <span class="cc-price">${rub(c.price)}</span>
       </div>
     </div>
@@ -243,7 +247,7 @@ const SCREENS = {
       const s = ONBOARDING[obStep];
       const last = obStep === ONBOARDING.length - 1;
       return `<div class="ob">
-        <div class="ob-art">${s.orb ? `<div class="ob-orb"><div class="orb-wrap demo"><div class="ring r1"></div><div class="ring r2"></div><div class="orb"><span class="psi">Ψ</span></div></div></div>` : scene(s.art)}<div class="ob-fade"></div></div>
+        <div class="ob-art">${s.img ? ph(s.img, 'ob-photo', true) : s.orb ? `<div class="ob-orb"><div class="orb-wrap demo"><div class="ring r1"></div><div class="ring r2"></div><div class="orb"><span class="psi">Ψ</span></div></div></div>` : scene(s.art)}<div class="ob-fade"></div></div>
         <div class="ob-brand">${logo()}</div>
         <div class="ob-body">
           <h1>${s.title}</h1>
@@ -263,12 +267,14 @@ const SCREENS = {
       const lv = levelInfo();
       const lead = !S.lead
         ? `<button class="card-lead" data-action="go" data-to="quiz">
+            ${ph('room', 'cl-bg')}
             <div class="cl-top"><span class="pill-soft">${icon('gift')} Подарок</span><span class="cl-more">•••</span></div>
             <h2>Тест: насколько тревога управляет тобой</h2>
             <p>+ гид «5 техник против тревоги» и ${fmt(CONFIG.rewards.quiz)} ${C}</p>
             <div class="cl-bottom"><div class="faces">${faces()}</div><span class="xs">2 413 прошли</span><span class="round-arrow">${icon('arrow-right')}</span></div>
           </button>`
         : `<button class="card-lead" data-action="go" data-to="guide">
+            ${ph('gift', 'cl-bg')}
             <div class="cl-top"><span class="pill-soft">${icon('check')} Подарок получен</span></div>
             <h2>Гид: 5 техник против тревоги</h2>
             <p>${giftActive() ? `Код −${CONFIG.giftPromo.percent}% на курс сгорит через <b data-gift-timer>${fmtLeft(giftLeftMs())}</b>` : 'Открой и выбери технику на сегодня'}</p>
@@ -296,15 +302,15 @@ const SCREENS = {
         </div>
         ${secHead('Быстрые практики')}
         <div class="tools">
-          <button class="tool" data-action="go" data-to="breathing">
+          <button class="tool photo" data-action="go" data-to="breathing">${ph('breath', 'tool-bg')}
             <div><b>Дыхание 4-7-8</b><p>Успокоиться за 2 минуты</p></div>
             <span class="round-arrow sm">${icon('arrow-right')}</span>
-            <div class="tool-art breath-mini"><i></i><i></i><i></i></div>
+            
           </button>
-          <button class="tool" data-action="go" data-to="${S.lead ? 'guide' : 'quiz'}">
+          <button class="tool photo" data-action="go" data-to="${S.lead ? 'guide' : 'quiz'}">${ph('guide', 'tool-bg')}
             <div><b>Гид: 5 техник</b><p>${S.lead ? 'Аптечка для нервов' : 'Откроется после теста'}</p></div>
             <span class="round-arrow sm">${icon(S.lead ? 'arrow-right' : 'lock')}</span>
-            <div class="tool-art">${icon('layers', 'big')}</div>
+            
           </button>
         </div>
         ${secHead('Заработать искры')}
@@ -335,11 +341,11 @@ const SCREENS = {
       let body = '';
       if (tab === 'program') body = `<div class="modules">${c.modules.map((m, i) => `<div class="module"><span class="mod-n">${String(i + 1).padStart(2, '0')}</span><span>${m}</span></div>`).join('')}</div>`;
       if (tab === 'format') body = `<div class="list">${c.format.map((f) => `<div class="row static"><span class="row-ico">${icon('check')}</span><span class="row-main"><span class="row-title">${f}</span></span></div>`).join('')}</div>`;
-      if (tab === 'author') body = `<div class="card author"><i class="mini-ava lg">${a.initials}</i><div><b>${a.name}</b><div class="muted sm">${a.role}</div><div class="muted xs">${a.exp}</div><p class="sm">${a.bio}</p></div></div>`;
+      if (tab === 'author') body = `<div class="card author">${authorAva(a, 'lg')}<div><b>${a.name}</b><div class="muted sm">${a.role}</div><div class="muted xs">${a.exp}</div><p class="sm">${a.bio}</p></div></div>`;
       if (tab === 'reviews') body = REVIEWS.map((r) => `<div class="card review"><div class="stars">${'★★★★★'}</div><p class="sm">${r.text}</p><div class="muted xs">${r.name}</div></div>`).join('');
       return `
         <div class="detail-hero">
-          ${scene(c.art)}
+          ${media(c)}
           <div class="hero-fade"></div>
           <div class="hero-actions"><button class="icon-btn page-back" data-action="back" aria-label="Назад">${icon('arrow-left')}</button><span></span><button class="icon-btn ${fav ? 'on' : ''}" data-action="fav" data-id="${c.id}" aria-label="В избранное">${icon('heart')}</button></div>
           <div class="hero-text">${c.tag ? `<span class="tag static">${c.tag}</span>` : ''}<h1>${c.title}</h1><p>${c.subtitle}</p></div>
@@ -499,7 +505,7 @@ const SCREENS = {
           const owned = S.purchases.some((p) => p.itemId === it.id);
           const pct = Math.min(100, (S.balance / it.price) * 100);
           return `<button class="shop-card ${owned ? 'owned' : ''}" data-action="item" data-id="${it.id}">
-            <div class="sc-ico">${icon(it.icon)}</div>
+            <div class="sc-media">${it.img ? ph(it.img) : ''}<span class="sc-ico">${icon(it.icon)}</span></div>
             <div class="sc-title">${it.title}</div>
             <div class="sc-desc">${it.short}</div>
             ${owned ? `<div class="sc-price ok">${icon('check')} Твоё</div>` : `<div class="sc-price"><span class="spark">${C}</span> ${fmt(it.price)}</div><div class="bar thin"><i style="width:${pct}%"></i></div>`}
@@ -571,6 +577,7 @@ const SCREENS = {
       if (!it || !S.purchases.some((x) => x.itemId === it.id)) return `${subTop('Материал')}<p class="muted">Материал не найден.</p>`;
       const c = it.content;
       return `${subTop(it.title)}
+        ${it.img ? `<div class="quiz-hero">${ph(it.img)}<div class="hero-fade"></div></div>` : ''}
         <p class="lead-text">${c.intro}</p>
         <ol class="steps">${c.steps.map((s) => `<li>${s}</li>`).join('')}</ol>
         <div class="card note">${icon('sparkle')}<p class="sm">${c.outro}</p></div>`;
@@ -581,7 +588,7 @@ const SCREENS = {
     html() {
       const s = CONFIG.school;
       return `${subTop('О школе')}
-        <div class="about-hero">${scene({ tone: '#3d2e22', lampX: 200, chair: true, plant: true, shelf: true })}<div class="hero-fade"></div><div class="about-logo">${logo()}</div></div>
+        <div class="about-hero">${ph('about')}<div class="hero-fade"></div><div class="about-logo">${logo()}</div></div>
         <div class="stats-row">
           <div><b>${s.students}</b><span>учеников</span></div>
           <div><b>${s.years} лет</b><span>работаем</span></div>
@@ -589,10 +596,10 @@ const SCREENS = {
         </div>
         <p class="lead-text">Мы учим психологии, которая работает в обычной жизни: без эзотерики и обещаний «изменить всё за неделю». Только методы с доказанной эффективностью, живые кураторы и бережная атмосфера.</p>
         ${secHead('Основатель')}
-        <div class="card author"><i class="mini-ava lg">${AUTHORS.anna.initials}</i><div><b>${s.founder}</b><div class="muted sm">${s.founderRole}</div><p class="sm">${AUTHORS.anna.bio}</p></div></div>
+        <div class="card author">${authorAva(AUTHORS.anna, 'lg')}<div><b>${s.founder}</b><div class="muted sm">${s.founderRole}</div><p class="sm">${AUTHORS.anna.bio}</p></div></div>
         ${secHead('Команда')}
-        <div class="list">${Object.values(AUTHORS).map((a) => `<div class="row static"><i class="mini-ava">${a.initials}</i><span class="row-main"><span class="row-title">${a.name}</span><span class="row-sub">${a.role}</span></span></div>`).join('')}</div>
-        <p class="muted xs center legal">${s.licence}<br>Материалы школы не являются медицинской помощью и не заменяют консультацию врача.</p>`;
+        <div class="list">${Object.values(AUTHORS).map((a) => `<div class="row static">${authorAva(a, 'md')}<span class="row-main"><span class="row-title">${a.name}</span><span class="row-sub">${a.role}</span></span></div>`).join('')}</div>
+        <p class="muted xs center legal">Фото: Unsplash (Yuri Efremov, Daiga Ellaby, Vitaly Gariev, Margo Evardson и другие авторы)<br>${s.licence}<br>Материалы школы не являются медицинской помощью и не заменяют консультацию врача.</p>`;
     },
   },
 
@@ -601,7 +608,7 @@ const SCREENS = {
     html() {
       if (quiz.step === 'intro') {
         return `${subTop('Подарок')}
-          <div class="quiz-hero">${scene({ tone: '#3a3024', lampX: 200, window: true, table: true, plant: true })}<div class="hero-fade"></div><span class="pill-soft over">${icon('gift')} Бесплатно</span></div>
+          <div class="quiz-hero">${ph('quiz')}<div class="hero-fade"></div><span class="pill-soft over">${icon('gift')} Бесплатно</span></div>
           <h1 class="h1">Насколько тревога управляет твоей жизнью?</h1>
           <p class="lead-text">7 вопросов, 2 минуты. Тест основан на скрининговых шкалах, которые психологи используют на первой встрече.</p>
           <div class="list">
@@ -702,7 +709,7 @@ const SCREENS = {
       }
       const calm = COURSES.find((c) => c.id === 'calm');
       return `${subTop('Гид')}
-        <span class="pill-soft">${icon('gift')} Твой подарок</span>
+        <div class="quiz-hero">${ph('gift')}<div class="hero-fade"></div><span class="pill-soft over">${icon('gift')} Твой подарок</span></div>
         <h1 class="h1 serif">${GUIDE.title}</h1>
         <p class="lead-text">${GUIDE.intro}</p>
         <div class="stack">${GUIDE.items.map((t, i) => `
@@ -725,7 +732,7 @@ const SCREENS = {
   // ---------------------------------------------------------- дыхание 4-7-8
   breathing: {
     html() {
-      return `${subTop('Дыхание 4-7-8')}
+      return `<div class="screen-bg">${ph('breath')}</div>${subTop('Дыхание 4-7-8')}
         <p class="muted center sm">Длинный выдох включает парасимпатическую нервную систему, и тело получает сигнал «опасности нет».</p>
         <div class="breath-stage">
           <div class="breath-halo"></div>
@@ -799,7 +806,7 @@ function itemSheet(id) {
   }
   openSheet(`
     <div class="sheet-body">
-      <div class="sheet-ico">${icon(it.icon)}</div>
+      ${it.img ? `<div class="sheet-photo">${ph(it.img)}</div>` : `<div class="sheet-ico">${icon(it.icon)}</div>`}
       <h2 class="h2">${it.title}</h2>
       <p class="muted">${it.desc}</p>
       <div class="sheet-price"><span class="spark">${C}</span> ${fmt(it.price)} <span class="muted xs">· у тебя ${fmt(S.balance)}</span></div>

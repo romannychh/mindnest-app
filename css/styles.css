@@ -602,3 +602,4 @@ img.mini-ava { object-fit: cover; padding: 0; }
 .tool.photo::before { background: linear-gradient(180deg, rgba(14, 12, 10, .1) 40%, rgba(14, 12, 10, .55) 100%); }
 .screen-bg .ph { filter: blur(4px) brightness(.55) saturate(.8) sepia(.2); transform: scale(1.15) translateY(22%); }
 .screen-bg::after { background: radial-gradient(circle at 50% 40%, rgba(14, 12, 10, .55), rgba(14, 12, 10, .2) 60%), linear-gradient(180deg, rgba(14, 12, 10, .85), rgba(14, 12, 10, .3) 50%, rgba(14, 12, 10, .9)); }
+.ob-brand { text-shadow: 0 1px 10px rgba(0, 0, 0, .8); } .ob-brand small { color: #d9cfc1; }

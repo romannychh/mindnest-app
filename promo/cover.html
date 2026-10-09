@@ -1,0 +1,33 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;box-sizing:border-box}
+body{width:640px;height:360px;overflow:hidden;background:#0e0c0a;font-family:Manrope,sans-serif;color:#f4ede3;position:relative}
+.photo{position:absolute;right:0;top:0;width:400px;height:360px;background:url(../img/room.jpg) center 30%/cover;filter:saturate(.82) sepia(.14) contrast(1.04) brightness(.95)}
+.fade{position:absolute;inset:0;background:linear-gradient(90deg,#0e0c0a 36%,rgba(14,12,10,.75) 52%,rgba(14,12,10,0) 78%),linear-gradient(0deg,rgba(14,12,10,.6),rgba(14,12,10,0) 40%)}
+.glow{position:absolute;left:-80px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(207,176,138,.18),transparent 65%)}
+.content{position:absolute;left:40px;top:38px;width:330px}
+.logo{display:flex;align-items:center;gap:10px;margin-bottom:34px}
+.mark{width:38px;height:38px;border-radius:11px;border:1.5px solid rgba(255,236,210,.55);display:grid;place-items:center;font:600 26px/1 'Cormorant Garamond',serif;color:#ead4b0}
+.logo b{display:block;font-size:16px;letter-spacing:.02em}
+.logo small{display:block;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:#a69b8b}
+h1{font-size:34px;line-height:1.08;font-weight:800;letter-spacing:-.025em}
+h1 em{font:600 40px/1 'Cormorant Garamond',serif;font-style:italic;color:#ead4b0;letter-spacing:0}
+p{margin-top:14px;font-size:14px;color:#cfc4b4;font-weight:500}
+.pills{display:flex;gap:8px;margin-top:22px}
+.pill{padding:7px 13px;border-radius:99px;background:rgba(207,176,138,.14);border:1px solid rgba(207,176,138,.3);font-size:12px;font-weight:700;color:#ead4b0}
+.orb{position:absolute;right:34px;bottom:30px;width:84px;height:84px;border-radius:50%;display:grid;place-items:center;
+background:radial-gradient(circle at 34% 28%,#fff3dc 0%,#e9c993 17%,#bb8c55 42%,#6d4828 72%,#2a1a0d 100%);
+box-shadow:0 14px 40px -6px rgba(210,160,90,.6),inset 0 -10px 20px rgba(0,0,0,.4),inset 0 6px 14px rgba(255,240,210,.35)}
+.orb span{font:600 50px/1 'Cormorant Garamond',serif;color:rgba(44,27,12,.75);margin-top:-4px}
+.ring{position:absolute;right:22px;bottom:18px;width:108px;height:108px;border-radius:50%;border:1px dashed rgba(233,210,170,.35)}
+</style></head><body>
+<div class="photo"></div><div class="fade"></div><div class="glow"></div>
+<div class="content">
+  <div class="logo"><span class="mark">Ψ</span><div><b>MindNest</b><small>школа психологии</small></div></div>
+  <h1>Психология,<br>которая <em>работает</em></h1>
+  <p>Тест на тревожность и гид в подарок</p>
+  <div class="pills"><span class="pill">Курсы</span><span class="pill">Практики</span><span class="pill">✦ Искры</span></div>
+</div>
+<div class="ring"></div><div class="orb"><span>Ψ</span></div>
+</body></html>

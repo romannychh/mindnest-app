@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="o" cx="36%" cy="30%" r="75%">
+      <stop offset="0" stop-color="#fff3dc"/><stop offset=".2" stop-color="#e9c993"/><stop offset=".5" stop-color="#bb8c55"/><stop offset=".85" stop-color="#6d4828"/><stop offset="1" stop-color="#2a1a0d"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" fill="#0e0c0a"/>
+  <circle cx="256" cy="256" r="170" fill="url(#o)"/>
+  <text x="256" y="322" text-anchor="middle" font-family="Georgia, serif" font-size="200" fill="#2c1b0c" fill-opacity=".75">Ψ</text>
+</svg>

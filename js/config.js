@@ -23,7 +23,7 @@ export const CONFIG = {
 
   // Куда отправлять заявки из лид-магнита: n8n / Make / Google Apps Script / свой бэкенд.
   // Пусто = заявка сохраняется только на устройстве (демо-режим).
-  leadsWebhook: '',
+  leadsWebhook: 'https://script.google.com/macros/s/AKfycbxjvahocOVGMUdYXg40jBZf54rqyiiD51lHoLRL9kLCk4NhkNFZOXj1baCcWX4ns_pA/exec',
 
   economy: {
     energyBase: 500,       // стартовый запас энергии

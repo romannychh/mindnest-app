@@ -12,6 +12,10 @@ const PROPS = PropertiesService.getScriptProperties();
 
 // ------------------------------------------------------------ приём заявки
 function doPost(e) {
+  if (!e || !e.postData) {
+    console.log('doPost вызывается приложением, вручную его запускать не нужно. Для проверки запусти findChatId или testLead.');
+    return reply('no data');
+  }
   try {
     const lead = JSON.parse(e.postData.contents);
     if (!lead.name || !lead.contact) return reply('bad request');

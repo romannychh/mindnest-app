@@ -17,7 +17,7 @@ export const CONFIG = {
   links: {
     manager: 'mindnest_care',                     // ник менеджера в Telegram без @
     channel: 'https://t.me/mindnest_school',      // канал школы (задание «подпишись»)
-    miniApp: 'https://t.me/mindnest_bot/app',     // прямая ссылка на Mini App (для рефералок)
+    miniApp: 'https://t.me/m1ndnest_bot/app',     // прямая ссылка на Mini App (для рефералок)
     privacy: 'https://example.com/privacy',       // политика обработки персональных данных
   },
 

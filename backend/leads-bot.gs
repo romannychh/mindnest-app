@@ -161,3 +161,35 @@ function testLead() {
   }, false);
   console.log('Отправлено. Проверь Telegram.');
 }
+
+// ------------------------------------------------------------ БЫСТРАЯ НАСТРОЙКА (одна кнопка)
+// 1) Нажми «Старт» в @m1ndnest_bot с аккаунта менеджера.
+// 2) Вставь токен бота между кавычками ниже.
+// 3) Выбери вверху функцию setup и нажми «Выполнить».
+// 4) После успеха СОТРИ токен отсюда (он уже сохранён в свойствах скрипта) и сохрани проект.
+function setup() {
+  const token = 'ВСТАВЬ_СЮДА_ТОКЕН'.trim();
+  if (!/^\d+:[\w-]{30,}$/.test(token)) return console.log('❌ Вставь токен из @BotFather вместо ВСТАВЬ_СЮДА_ТОКЕН (вид: 1234567890:AAH...)');
+
+  const me = JSON.parse(UrlFetchApp.fetch('https://api.telegram.org/bot' + token + '/getMe', { muteHttpExceptions: true }).getContentText());
+  if (!me.ok) return console.log('❌ Telegram не принял токен: ' + me.description + '. Проверь, что скопировал его целиком.');
+  PROPS.setProperty('BOT_TOKEN', token);
+  console.log('✅ Токен сохранён, бот @' + me.result.username);
+
+  const upd = JSON.parse(UrlFetchApp.fetch('https://api.telegram.org/bot' + token + '/getUpdates', { muteHttpExceptions: true }).getContentText());
+  const chats = {};
+  (upd.result || []).forEach(function (u) {
+    const m = u.message || u.my_chat_member;
+    if (m && m.chat) chats[m.chat.id] = m.chat;
+  });
+  const list = Object.keys(chats).map(function (id) { return chats[id]; });
+  if (!list.length) return console.log('⚠️ Никто ещё не нажал «Старт» в @' + me.result.username + '. Нажми и запусти setup ещё раз.');
+  list.forEach(function (c) { console.log('chat_id = ' + c.id + '  ·  ' + (c.title || c.username || c.first_name) + ' (' + c.type + ')'); });
+
+  if (!PROPS.getProperty('CHAT_ID')) {
+    const chat = list[list.length - 1];
+    PROPS.setProperty('CHAT_ID', String(chat.id));
+    console.log('✅ CHAT_ID сохранён: ' + chat.id + ' (' + (chat.title || chat.username || chat.first_name) + ')');
+  }
+  testLead();
+}

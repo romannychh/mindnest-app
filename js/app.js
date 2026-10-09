@@ -224,6 +224,7 @@ async function sendLead(lead) {
       body: JSON.stringify({
         ...lead,
         source: 'anxiety_test',
+        max_score: QUIZ.length * 3,
         tg_user: tgUser(),
         init_data: window.Telegram?.WebApp?.initData || '', // для проверки подписи на сервере
         ref: startParam(),
